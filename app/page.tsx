@@ -1,8 +1,12 @@
-export default function Home() {
+import TasksList from './components/TaskList';
+import { getTasks } from './lib/tasks';
+
+export default async function Home() {
+  const tasks = await getTasks();
+
   return (
     <div>
-      <h2>Kanban Board</h2>
-      
+      <TasksList tasks={tasks} />
     </div>
   );
 }
