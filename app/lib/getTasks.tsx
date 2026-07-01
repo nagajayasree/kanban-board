@@ -1,5 +1,7 @@
+import 'server-only';
+
 import clientPromise from './mongodb';
-import { Task } from '../components/TaskList';
+import { Task } from '../types';
 
 export async function getTasks(): Promise<Task[]> {
   const client = await clientPromise;
@@ -12,9 +14,7 @@ export async function getTasks(): Promise<Task[]> {
 
   return tasks.map((task) => ({
     _id: task._id.toString(),
-    name: task.name,
-    priority: task.priority,
-    // description: task.description,
+    title: task.title,
     status: task.status,
   }));
 }

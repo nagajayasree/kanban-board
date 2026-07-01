@@ -1,5 +1,5 @@
 import TasksList from './components/TaskList';
-import { getTasks } from './lib/tasks';
+import { getTasks } from './lib/getTasks';
 
 export default async function Home() {
   const tasks = await getTasks();
