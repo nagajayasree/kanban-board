@@ -1,6 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { TbArrowLeft } from 'react-icons/tb';
+import { TbArrowRight } from 'react-icons/tb';
+import { TbEdit } from 'react-icons/tb';
+import { TbTrash } from 'react-icons/tb';
 
 export type Task = {
   _id: string;
@@ -21,7 +25,12 @@ const COLUMNS: Column[] = [
   { id: 'done', label: 'Done' },
 ];
 
-export default function KanbanBoard({ tasks }: { tasks: Task[] }) {
+interface TaskListProps {
+  tasks: Task[];
+  // onDeleteTask: (id: string) => void;
+}
+
+export default function KanbanBoard({ tasks }: TaskListProps) {
   const [items, setItems] = useState<Task[]>(tasks);
 
   const getByStatus = (status: Task['status']) =>
@@ -69,6 +78,30 @@ export default function KanbanBoard({ tasks }: { tasks: Task[] }) {
                   {task.priority.charAt(0).toUpperCase() +
                     task.priority.slice(1)}
                 </span>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginTop: '10px',
+                    gap: '4px',
+                  }}
+                >
+                  <button className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded-lg shadow transition duration-200">
+                    <TbArrowLeft />
+                  </button>
+                  <button className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded-lg shadow transition duration-200">
+                    <TbArrowRight />
+                  </button>
+                  <button className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded-lg shadow transition duration-200">
+                    <TbEdit />
+                  </button>
+                  <button
+                    // onClick={() => onDeleteTask(task._id)}
+                    className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded-lg shadow transition duration-200"
+                  >
+                    <TbTrash />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
