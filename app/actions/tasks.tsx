@@ -6,15 +6,13 @@ import { ObjectId } from 'mongodb';
 
 export { ObjectId };
 
-export async function addTask(title: string, status: string, priority: string) {
+export async function addTask(title: string, status: string) {
   const client = await clientPromise;
   const db = client.db('kanban_board');
-  await db.collection('tasks').insertOne({
-    title,
-    status,
-    priority,
-  });
-  revalidatePath('/');
+
+  const result = await db.collection('tasks').insertOne({ title, status });
+
+  return { insertedId: result.insertedId.toString() };
 }
 
 export async function deleteTask(id: string) {

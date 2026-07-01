@@ -15,8 +15,6 @@ export async function getTasks(): Promise<Task[]> {
   return tasks.map((task) => ({
     _id: task._id.toString(),
     title: task.title,
-    priority: task.priority,
-    description: task.description,
     status: task.status,
   }));
 }

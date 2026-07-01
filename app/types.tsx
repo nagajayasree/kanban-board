@@ -1,9 +1,9 @@
 export type Task = {
   _id: string;
   title: string;
-  description?: string;
+  // description?: string;
   status: 'todo' | 'in-progress' | 'done';
-  priority: 'low' | 'medium' | 'high';
+  // priority: 'low' | 'medium' | 'high';
 };
 
 export type Column = {
